@@ -1,6 +1,6 @@
 export default {
   jwt: {
-    secret: 'ThisIsNotAScrete',
+    secret: 'ThisIsNotASecret',
     expiresIn: '2d',
   },
 };
