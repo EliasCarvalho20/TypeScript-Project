@@ -1,10 +1,11 @@
 export interface userInterface {
-  name: string;
+  name?: string;
   email: string;
   password: string;
 }
 
-export interface AuthInterface {
-  email: string;
-  password: string;
+export interface tokenInterface {
+  iat: number;
+  exp: number;
+  sub: string;
 }
