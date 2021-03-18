@@ -24,6 +24,9 @@
     "class-methods-use-this": "off",
     "no-console": "off",
     "camelcase": ["error"],
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "argsIgnorePattern": "_"
+    }],
     "prettier/prettier": ["error", {
       "semi": true,
       "singleQuote": true,
