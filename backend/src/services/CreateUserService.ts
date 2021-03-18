@@ -3,6 +3,7 @@ import { hash } from 'bcryptjs';
 
 import User from '../models/User';
 import { userInterface, userWithoutPass } from '../interface';
+import AppError from '../library/errors/AppError';
 
 class CreateUser {
   public async execute({ name, email, password }: userInterface): Promise<userWithoutPass> {
@@ -11,7 +12,7 @@ class CreateUser {
     const checkUserExists = await usersRepository.findOne({ where: { email } });
 
     if (checkUserExists) {
-      throw new Error('Email address already in use');
+      throw new AppError('Email address already in use', 409);
     }
 
     const hashedPassword = await hash(password, 16);
