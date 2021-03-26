@@ -26,7 +26,7 @@ const Register: FC = () => {
             <h1>Faça seu cadastro</h1>
 
             <Input name="name" placeholder="Nome" icon={ FiUser } />
-            <Input name="email" placeholder="E-mail" icon={ FiMail } />
+            <Input name="email" placeholder="Email" icon={ FiMail } />
             <Input
               name="password"
               type="password"
