@@ -46,39 +46,7 @@ export const Form = styled.form`
     margin-bottom: 24px;
   }
 
-  input {
-    background: #232129;
-    border-radius: 10px;
-    border: 2px solid #232129;
-    color: #f4ede8;
-    padding: 16px;
-    width: 100%;
 
-    &::placeholder {
-      color: #656360;
-    }
-
-    & + input {
-      margin-top: 8px;
-    }
-  }
-
-  button {
-    background: #ff9000;
-    border-radius: 10px;
-    border: 0;
-    color: #312e38;
-    font-weight: 500;
-    height: 56px;
-    margin-top: 16px;
-    padding: 0 16px;
-    transition: .5s ease;
-    width: 100%;
-
-    &:hover {
-      background: ${shade(0.2, '#ff9000')}
-    }
-  }
 
   a {
     color: #f4ede8;
