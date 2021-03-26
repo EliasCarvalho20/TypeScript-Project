@@ -28,6 +28,7 @@
     "react/jsx-one-extension-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
+    "no-console": "off",
     "import/prefer-default-export": "off",
     "camelcase": ["error"],
     "@typescript-eslint/explicit-function-return-type": [
