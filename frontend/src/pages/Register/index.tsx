@@ -5,9 +5,7 @@ import {
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import {
-  Container, Content, Form, Background,
-} from './styles';
+import { Container, Content, Background } from './styles';
 import logoImg from '../../assets/logo.svg';
 
 const Register: FC = () => (
@@ -18,7 +16,7 @@ const Register: FC = () => (
       <Content>
         <img src={ logoImg } alt="Logo" />
 
-        <Form>
+        <form>
           <h1>Faça seu cadastro</h1>
 
           <Input name="name" placeholder="Nome" icon={ FiUser } />
@@ -31,7 +29,7 @@ const Register: FC = () => (
           />
 
           <Button type="submit">Cadastrar</Button>
-        </Form>
+        </form>
 
         <a href="/">
           <FiArrowLeft />

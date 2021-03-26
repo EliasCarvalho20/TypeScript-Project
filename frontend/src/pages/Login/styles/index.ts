@@ -19,6 +19,28 @@ export const Content = styled.div`
   width: 100%;
   max-width: 700px;
 
+  form {
+    margin: 80px 0;
+    width: 340px;
+    text-align: center;
+
+    h1 {
+      margin-bottom: 24px;
+    }
+
+    a {
+      color: #f4ede8;
+      display: block;
+      margin-top: 24px;
+      text-decoration: none;
+      transition: .3s ease;
+
+      &:hover {
+        color: ${shade(0.2, '#f4ede8')};
+      }
+    }
+  }
+
   > a {
     align-items: center;
     color: #ff9000;
@@ -35,31 +57,6 @@ export const Content = styled.div`
       margin-right: 10px;
     }
   }
-`;
-
-export const Form = styled.form`
-  margin: 80px 0;
-  width: 340px;
-  text-align: center;
-
-  h1 {
-    margin-bottom: 24px;
-  }
-
-
-
-  a {
-    color: #f4ede8;
-    display: block;
-    margin-top: 24px;
-    text-decoration: none;
-    transition: .3s ease;
-
-    &:hover {
-      color: ${shade(0.2, '#f4ede8')};
-    }
-  }
-
 `;
 
 export const Background = styled.div`
