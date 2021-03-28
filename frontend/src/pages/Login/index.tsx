@@ -2,32 +2,24 @@ import React, { FC, useCallback, useRef } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import * as Yup from 'yup';
+
+import { DataValidation } from './interface';
+import loginValidation from './validation';
+import getValidationErrors from '../../utils/getValidationErrors';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { Container, Content, Background } from './styles';
 import logoImg from '../../assets/logo.svg';
-import getValidationErrors from '../../utils/getValidationErrors';
 
 const Login: FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: Record<string, unknown>) => {
+  const handleSubmit = useCallback(async (data: DataValidation) => {
     try {
       formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('Email obrigatório')
-          .email('Digite um email válido'),
-        password: Yup.string()
-          .required('Senha obrigatória'),
-      });
-
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+      await loginValidation(data);
     } catch (err) {
       const error = getValidationErrors(err);
 
