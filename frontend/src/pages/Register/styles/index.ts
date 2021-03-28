@@ -29,7 +29,7 @@ export const Content = styled.div`
     }
 
     a {
-      color: #f4ede8;
+      color: var(--white-orange);
       display: block;
       margin-top: 24px;
       text-decoration: none;
@@ -43,7 +43,7 @@ export const Content = styled.div`
 
   > a {
     align-items: center;
-    color: #f4ede8;
+    color: var(--white-orange);
     display: flex;
     margin-top: 24px;
     text-decoration: none;

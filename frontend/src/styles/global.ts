@@ -1,6 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+  :root {
+    --background: #232129;
+    --background-secondary: #312e38;
+    --orange-primary: #ff9000;
+    --white-orange: #f4ede8;
+    --red-error: #c53030;
+    --grey: #656360;
+    --white: #fff;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
@@ -9,8 +19,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #312e38;
-    color: #fff;
+    background: var(--background-secondary);
+    color: var(--white);
     -webkit-font-smoothing: antialiased;
   }
 
