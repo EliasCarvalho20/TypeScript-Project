@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express from 'express';
 import 'express-async-errors';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
@@ -15,6 +16,7 @@ dotenv.config();
 const PORT: number = Number(process.env.PORT) || 3333;
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/files', express.static(tempFolder));
 app.use(routes);
