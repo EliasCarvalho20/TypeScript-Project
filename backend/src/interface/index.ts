@@ -20,3 +20,8 @@ export interface userAvatar {
   user_id: string;
   avatarFilename: string;
 }
+
+export interface UserWithToken {
+  id: string;
+  token: string;
+}

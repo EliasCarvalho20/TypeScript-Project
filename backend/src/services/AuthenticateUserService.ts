@@ -3,12 +3,12 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
 import User from '../models/User';
-import { userInterface } from '../interface';
+import { userInterface, UserWithToken } from '../interface';
 import AppError from '../library/errors/AppError';
 import tokenConfig from '../config/tokenConfig';
 
 class AuthenticateUserService {
-  public async execute({ email, password }: userInterface): Promise<string> {
+  public async execute({ email, password }: userInterface): Promise<UserWithToken> {
     const usersRepository = getRepository(User);
 
     const appError = new AppError('Invalid credentials', 401);
@@ -23,10 +23,15 @@ class AuthenticateUserService {
       jwt: { secret, expiresIn },
     } = tokenConfig;
 
-    return sign({}, secret, {
+    const token = sign({}, secret, {
       subject: isUserValid.id,
       expiresIn,
     });
+
+    return {
+      id: isUserValid.id,
+      token,
+    };
   }
 }
 
