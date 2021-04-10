@@ -30,6 +30,8 @@ class AuthenticateUserService {
 
     return {
       id: isUserValid.id,
+      name: isUserValid.name,
+      email: isUserValid.email,
       token,
     };
   }
