@@ -8,9 +8,9 @@ usersRouter.post('/', async (req, res) => {
   const { email, password } = req.body;
 
   const authService = new AuthenticateUserService();
-  const token = await authService.execute({ email, password });
+  const userWithToken = await authService.execute({ email, password });
 
-  return res.status(201).json(token);
+  return res.status(201).json({ user: userWithToken });
 });
 
 export default usersRouter;
