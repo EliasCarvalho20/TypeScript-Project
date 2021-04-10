@@ -4,6 +4,15 @@ interface SignInCredentials{
 }
 
 export interface AuthContextInterface {
-  name: string;
+  data: UserFromApi;
   signIn(credentials: SignInCredentials): Promise<void>;
+}
+
+export interface UserFromApi {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    token: string;
+  }
 }

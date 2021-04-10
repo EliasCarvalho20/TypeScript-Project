@@ -19,7 +19,8 @@ import logoImg from '../../assets/logo.svg';
 const Login: FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { signIn } = useContext(AuthContext);
+  const { data: { user }, signIn } = useContext(AuthContext);
+  console.log(user);
 
   const handleSubmit = useCallback(async ({ email, password }: DataValidation) => {
     try {
