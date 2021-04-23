@@ -1,13 +1,13 @@
 import React, {
-  FC, createContext, useCallback, useState,
+  FC, createContext, useCallback, useState, useContext,
 } from 'react';
 
 import api from '../services/api';
 import { AuthContextInterface, UserFromApi } from './interface';
 
-export const AuthContext = createContext<AuthContextInterface>({} as AuthContextInterface);
+const AuthContext = createContext<AuthContextInterface>({} as AuthContextInterface);
 
-export const AuthProvider: FC = ({ children }) => {
+const AuthProvider: FC = ({ children }) => {
   const [data, setData] = useState<UserFromApi>(() => {
     const user = localStorage.getItem('@TSProject:user');
 
@@ -28,9 +28,25 @@ export const AuthProvider: FC = ({ children }) => {
     setData({ user });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@TSProject');
+
+    setData({} as UserFromApi);
+  }, []);
+
   return (
-    <AuthContext.Provider value={ { data, signIn } }>
+    <AuthContext.Provider value={ { data, signIn, signOut } }>
       {children}
     </AuthContext.Provider>
   );
 };
+
+const useAuth = (): AuthContextInterface => {
+  const context = useContext(AuthContext);
+
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
+
+  return context;
+};
+
+export { AuthProvider, useAuth };

@@ -1,11 +1,9 @@
-import React, {
-  FC, useCallback, useRef, useContext,
-} from 'react';
+import React, { FC, useCallback, useRef } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 
 import { DataValidation } from './interface';
 import loginValidation from './validation';
@@ -19,8 +17,7 @@ import logoImg from '../../assets/logo.svg';
 const Login: FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { data: { user }, signIn } = useContext(AuthContext);
-  console.log(user);
+  const { data: { user }, signIn } = useAuth();
 
   const handleSubmit = useCallback(async ({ email, password }: DataValidation) => {
     try {

@@ -6,6 +6,7 @@ interface SignInCredentials{
 export interface AuthContextInterface {
   data: UserFromApi;
   signIn(credentials: SignInCredentials): Promise<void>;
+  signOut(): void;
 }
 
 export interface UserFromApi {
