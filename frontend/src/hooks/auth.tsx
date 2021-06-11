@@ -5,7 +5,7 @@ import React, {
 import api from '../services/api';
 import { AuthContextInterface, UserFromApi } from './interface';
 
-const AuthContext = createContext<AuthContextInterface>({} as AuthContextInterface);
+const Auth = createContext<AuthContextInterface>({} as AuthContextInterface);
 
 const AuthProvider: FC = ({ children }) => {
   const [data, setData] = useState<UserFromApi>(() => {
@@ -23,7 +23,7 @@ const AuthProvider: FC = ({ children }) => {
     });
     const { user } = response.data;
 
-    localStorage.setItem('@TSProject', JSON.stringify(user));
+    localStorage.setItem('@TSProject:user', JSON.stringify(user));
 
     setData({ user });
   }, []);
@@ -35,14 +35,14 @@ const AuthProvider: FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={ { data, signIn, signOut } }>
+    <Auth.Provider value={ { data, signIn, signOut } }>
       {children}
-    </AuthContext.Provider>
+    </Auth.Provider>
   );
 };
 
 const useAuth = (): AuthContextInterface => {
-  const context = useContext(AuthContext);
+  const context = useContext(Auth);
 
   if (!context) throw new Error('useAuth must be used within an AuthProvider');
 

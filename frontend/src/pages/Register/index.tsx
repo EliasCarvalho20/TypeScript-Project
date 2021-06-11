@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import {
@@ -9,9 +10,9 @@ import { DataValidation } from './interface';
 import registerValidation from './validation';
 import getValidationErrors from '../../utils/getValidationErrors';
 
+import { Container, AnimationContainer, Background } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { Container, Content, Background } from './styles';
 import logoImg from '../../assets/logo.svg';
 
 const Register: FC = () => {
@@ -33,8 +34,7 @@ const Register: FC = () => {
     <>
       <Container>
         <Background />
-
-        <Content>
+        <AnimationContainer>
           <img src={ logoImg } alt="Logo" />
 
           <Form ref={ formRef } onSubmit={ handleSubmit }>
@@ -52,11 +52,11 @@ const Register: FC = () => {
             <Button type="submit">Cadastrar</Button>
           </Form>
 
-          <a href="/">
+          <Link to="/">
             <FiArrowLeft />
             Voltar para Login
-          </a>
-        </Content>
+          </Link>
+        </AnimationContainer>
       </Container>
     </>
   );

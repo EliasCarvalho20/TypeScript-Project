@@ -1,17 +1,18 @@
 import React, { FC, useCallback, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
 
 import { DataValidation } from './interface';
 import loginValidation from './validation';
 import getValidationErrors from '../../utils/getValidationErrors';
 
+import { Container, AnimationContainer, Background } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { Container, Content, Background } from './styles';
 import logoImg from '../../assets/logo.svg';
 
 const Login: FC = () => {
@@ -30,13 +31,16 @@ const Login: FC = () => {
       const error = getValidationErrors(err);
 
       formRef.current?.setErrors(error);
+
+      // eslint-disable-next-line no-useless-return
+      return;
     }
   }, [signIn]);
 
   return (
     <>
       <Container>
-        <Content>
+        <AnimationContainer>
           <img src={ logoImg } alt="Logo" />
 
           <Form ref={ formRef } onSubmit={ handleSubmit }>
@@ -50,11 +54,11 @@ const Login: FC = () => {
             <a href="a">Esqueci minha senha</a>
           </Form>
 
-          <a href="register">
+          <Link to="/register">
             <FiLogIn />
             Criar conta
-          </a>
-        </Content>
+          </Link>
+        </AnimationContainer>
 
         <Background />
       </Container>

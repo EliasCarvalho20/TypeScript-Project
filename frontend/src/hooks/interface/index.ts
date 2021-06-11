@@ -26,6 +26,6 @@ export interface ToastMessage {
 }
 
 export interface ToastContextData {
-  addToast(): void;
-  removeToast(): void;
+  addToast(message: Omit<ToastMessage, 'id'>): void;
+  removeToast(id: string): void;
 }
