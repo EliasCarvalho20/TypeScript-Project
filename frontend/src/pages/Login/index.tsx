@@ -1,10 +1,12 @@
 import React, { FC, useCallback, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import { ValidationError } from 'yup';
 
 import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 import { DataValidation } from './interface';
 import loginValidation from './validation';
@@ -17,8 +19,9 @@ import logoImg from '../../assets/logo.svg';
 
 const Login: FC = () => {
   const formRef = useRef<FormHandles>(null);
-
-  const { data: { user }, signIn } = useAuth();
+  const history = useHistory();
+  const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(async ({ email, password }: DataValidation) => {
     try {
@@ -27,15 +30,24 @@ const Login: FC = () => {
       await loginValidation({ email, password });
 
       await signIn({ email, password });
+
+      history.push('/dashboard');
     } catch (err) {
-      const error = getValidationErrors(err);
+      if (err instanceof ValidationError) {
+        const error = getValidationErrors(err);
+        formRef.current?.setErrors(error);
 
-      formRef.current?.setErrors(error);
+        // eslint-disable-next-line no-useless-return
+        return;
+      }
 
-      // eslint-disable-next-line no-useless-return
-      return;
+      addToast({
+        type: 'error',
+        title: 'Erro na autenticação',
+        description: 'Ocorreu um erro ao fazer login, tente novamente!',
+      });
     }
-  }, [signIn]);
+  }, [signIn, history, addToast]);
 
   return (
     <>

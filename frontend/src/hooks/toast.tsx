@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { uuid } from 'uuidv4';
 
-import Toast from '../components/ToastContainer';
+import ToastContainer from '../components/ToastContainer';
 import { ToastContextData, ToastMessage } from './interface';
 
 const ToastContext = createContext<ToastContextData>({} as ToastContextData);
@@ -31,7 +31,7 @@ const ToastProvider: FC = ({ children }) => {
   return (
     <ToastContext.Provider value={ { addToast, removeToast } }>
       {children}
-      <Toast messages={ messages } />
+      <ToastContainer messages={ messages } />
     </ToastContext.Provider>
   );
 };
